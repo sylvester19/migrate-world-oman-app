@@ -1,0 +1,13 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+
+.react-international-phone-country-selector-button{
+    border: none !important;
+}
+
+.react-international-phone-input-container .react-international-phone-input{
+    border: none !important;
+    font-size: 1rem !important;
+}

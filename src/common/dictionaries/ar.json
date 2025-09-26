@@ -1,0 +1,239 @@
+{
+  "portal": {
+    "title": "التسجيل في برنامج إقامة المستثمر العماني",
+    "subtitle": "يرجى ملء النموذج أدناه للتسجيل في برنامج إقامة المستثمر العماني.",
+    "verification": {
+      "email": {
+        "label": "البريد الإلكتروني",
+        "placeholder": "البريد الإلكتروني",
+        "button": "إرسال رمز التحقق"
+      },
+      "otp": {
+        "label": "رمز التحقق",
+        "placeholder": "رمز التحقق",
+        "button": "تحقق من رمز التحقق"
+      }
+    },
+    "steps": {
+      "step1": {
+        "title": "خيارات الإقامة"
+      },
+      "step2": {
+        "title": "المعلومات الشخصية"
+      },
+      "step3": {
+        "title": "معلومات المعالين"
+      },
+      "step4": {
+        "title": "تحميل المستندات"
+      },
+      "step5": {
+        "title": "الدفع"
+      },
+      "step6": {
+        "title": "التحقق"
+      }
+    },
+    "upload": {
+      "info": "2 ميجا بايت كحد أقصى (PDF، JPG، PNG)",
+      "preview": "معاينة المستند المحفوظ"
+    },
+    "residencySelection": {
+      "title": "خيارات الإقامة",
+      "permit": "تصريح الإقامة",
+      "5year": {
+        "label": "5 سنوات",
+        "title": "تصريح إقامة لمدة 5 سنوات",
+        "checkbox": "أنا، كمستثمر، أقر وأؤكد أن الحد الأدنى للاستثمار المطلوب للحصول على إقامة لمدة 5 سنوات في سلطنة عمان هو:",
+        "checkboxAmount": "OMR 250,000"
+      },
+      "10year": {
+        "label": "10 سنوات",
+        "title": "تصريح إقامة لمدة 10 سنوات",
+        "checkbox": "أنا، كمستثمر، أقر وأؤكد أن الحد الأدنى للاستثمار المطلوب للحصول على إقامة لمدة 10 سنوات في سلطنة عمان هو:",
+        "checkboxAmount": "OMR 500,000"
+      },
+      "button": {
+        "confirm": "أؤكد",
+        "reset": "إعادة تعيين",
+        "continue": "متابعة"
+      },
+      "enrolled": "لقد قمت بالتسجيل لـ"
+    },
+    "personalInformation": {
+      "title": "المعلومات الشخصية",
+      "fullName": {
+        "label": "الاسم الكامل",
+        "placeholder": "الاسم الكامل"
+      },
+      "contactNumber": {
+        "label": "رقم الاتصال",
+        "placeholder": "رقم الاتصال"
+      },
+      "linkedin": {
+        "label": "معرف لينكد إن",
+        "placeholder": "معرف لينكد إن",
+        "info": "(اختياري)"
+      },
+      "dateOfBirth": {
+        "label": "تاريخ الميلاد",
+        "placeholder": "تاريخ الميلاد"
+      },
+      "placeOfBirth": {
+        "label": "مكان الميلاد",
+        "countryPlaceholder": "دولة الميلاد",
+        "cityPlaceholder": "مدينة الميلاد"
+      },
+      "occupation": {
+        "label": "المهنة",
+        "placeholder": "المهنة",
+        "list": ["موظف", "مالك عمل"]
+      },
+      "companyName": {
+        "label": "اسم الشركة",
+        "placeholder": "اسم الشركة"
+      },
+      "companyWebsite": {
+        "label": "موقع الشركة الإلكتروني",
+        "placeholder": "موقع الشركة الإلكتروني"
+      },
+      "officeNumber": {
+        "label": "رقم المكتب",
+        "placeholder": "رقم المكتب"
+      },
+      "businessNumber": {
+        "label": "رقم العمل",
+        "placeholder": "رقم العمل"
+      },
+      "businessSector": {
+        "label": "القطاع التجاري",
+        "placeholder": "القطاع التجاري",
+        "list": [
+          "الزراعة",
+          "البناء",
+          "التعليم",
+          "المالية",
+          "الرعاية الصحية",
+          "الضيافة",
+          "تكنولوجيا المعلومات",
+          "التصنيع",
+          "العقارات",
+          "التجزئة",
+          "النقل"
+        ]
+      },
+      "lastDeparture": {
+        "label": "تاريخ آخر مغادرة من عمان",
+        "placeholder": "تاريخ آخر مغادرة من عمان (اختياري)"
+      },
+      "citizenship": {
+        "label": "الجنسية",
+        "placeholder": "الجنسية",
+        "info": "(اختر جميع ما ينطبق)"
+      },
+      "countryOfResidence": {
+        "label": "دولة الإقامة",
+        "placeholder": "دولة الإقامة"
+      },
+      "homeAddress": {
+        "label": "عنوان المنزل",
+        "placeholder": "عنوان المنزل",
+        "subText": "(الشارع، المدينة، الرمز البريدي)"
+      },
+      "workAddress": {
+        "label": "عنوان العمل",
+        "placeholder": "عنوان العمل",
+        "subText": "(رقم المكتب، الرمز البريدي، المدينة، الدولة)"
+      }
+    },
+    "dependent": {
+      "title": "معلومات المعالين",
+      "subtitle": "يرجى إدخال معلومات المعالين الذين ترغب في إضافتهم إلى طلب الإقامة الخاص بك.",
+      "addDependent": "إضافة معال",
+      "remove": "إزالة",
+      "checkbox": "أؤكد أنني لا أملك أي معالين",
+      "name": "اسم المعال",
+      "description": "يرجى إدخال الاسم الكامل للمعال.",
+      "dependentInformation": {
+        "relation": {
+          "label": "العلاقة",
+          "placeholder": "العلاقة",
+          "list": [
+            "زوج/زوجة",
+            "أطفال",
+            "أم/أب",
+            "أصهار",
+            "أخ/أخت",
+            "أحفاد"
+          ]
+        },
+        "fullName": {
+          "label": "الاسم الكامل",
+          "placeholder": "الاسم الكامل"
+        },
+        "email": {
+          "label": "البريد الإلكتروني",
+          "placeholder": "البريد الإلكتروني"
+        },
+        "contactNumber": {
+          "label": "رقم الاتصال",
+          "placeholder": "رقم الاتصال"
+        },
+        "dateOfBirth": {
+          "label": "تاريخ الميلاد",
+          "placeholder": "تاريخ الميلاد"
+        },
+        "placeOfBirth": {
+          "label": "مكان الميلاد",
+          "countryPlaceholder": "دولة الميلاد",
+          "cityPlaceholder": "مدينة الميلاد"
+        },
+        "citizenship": {
+          "label": "الجنسية",
+          "placeholder": "الجنسية",
+          "info": "(اختر جميع ما ينطبق)"
+        },
+        "countryOfResidence": {
+          "label": "دولة الإقامة",
+          "placeholder": "دولة الإقامة"
+        },
+        "homeAddress": {
+          "label": "عنوان المنزل",
+          "placeholder": "عنوان المنزل",
+          "subText": "(رقم المنزل، صندوق البريد، الرمز البريدي، المدينة، الدولة)"
+        },
+        "file": {
+          "label": "شهادة حضانة الأطفال",
+          "alt": "اختياري",
+          "info": "2 ميجا بايت كحد أقصى (PDF، JPG، PNG)"
+        }
+      }
+    },
+    "uploadDocuments": {
+      "title": "تحميل المستندات",
+      "description": "يرجى تحميل المستندات المطلوبة.",
+      "residenceOption": {
+        "label": "خيار الإقامة",
+        "placeholder": "خيار الإقامة"
+      }
+    },
+    "paymentDetails": {
+      "title": "تفاصيل الدفع",
+      "description": "يرجى مراجعة تفاصيل الدفع أدناه قبل المتابعة.",
+      "mainApplicant": "المتقدم الرئيسي",
+      "total": "المجموع",
+      "overallTotal": "المجموع الكلي",
+      "payNow": "ادفع الآن",
+      "OMR": "ريال عماني",
+      "fees": {
+        "legal": "الرسوم القانونية (شاملة ضريبة القيمة المضافة)",
+        "government": "الرسوم الحكومية"
+      },
+      "age": "العمر"
+    },
+    "button": {
+      "back": "رجوع",
+      "next": "التالي"
+    }
+  }
+}

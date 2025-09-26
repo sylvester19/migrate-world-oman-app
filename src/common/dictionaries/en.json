@@ -1,0 +1,242 @@
+{
+  "portal": {
+    "title": "Registration for Oman Investor Residency Program",
+    "subtitle": "Please fill in the form below to register for the Oman Investor Residency Program program.",
+    "verification": {
+      "email": {
+        "label": "Email",
+        "placeholder": "Email",
+        "button": "Send Verification Code"
+      },
+      "otp": {
+        "label": "OTP",
+        "placeholder": "OTP",
+        "button": "Verify OTP"
+      }
+    },
+    "steps": {
+      "step1": {
+        "title": "Residency Options"
+      },
+      "step2": {
+        "title": "Personal Information"
+      },
+      "step3": {
+        "title": "Dependent Information"
+      },
+      "step4": {
+        "title": "Upload Documents"
+      },
+      "step5": {
+        "title": "Payment"
+      },
+      "step6": {
+        "title": "Verification"
+      }
+    },
+    "upload": {
+      "info": "2 MB max (PDF, JPG, PNG)",
+      "preview": "Preview saved document"
+    },
+    "residencySelection": {
+      "title": "Residency Options",
+      "permit": "Residency Permit",
+      "5year": {
+        "label": "5 Years",
+        "title": "5 Years Residency Permit",
+        "checkbox": "I, as the investor, acknowledge and confirm that the minimum required investment for the 5 years residency in the Sultanate of Oman is:",
+        "checkboxAmount": "OMR 250,000"
+      },
+      "10year": {
+        "label": "10 Years",
+        "title": "10 Years Residency Permit",
+        "checkbox": "I, as the investor, acknowledge and confirm that the minimum required investment for the 10 years residency in the Sultanate of Oman is:",
+        "checkboxAmount": "OMR 500,000"
+      },
+      "button": {
+        "confirm": "I Confirm",
+        "reset": "Reset",
+        "continue": "Continue"
+      },
+      "enrolled": "You have enrolled for"
+    },
+    "personalInformation": {
+      "title": "Personal Information",
+      "fullName": {
+        "label": "Full Name",
+        "placeholder": "Full Name"
+      },
+      "contactNumber": {
+        "label": "Contact Number",
+        "placeholder": "Contact Number"
+      },
+      "linkedin": {
+        "label": "LinkedIn ID",
+        "placeholder": "LinkedIn ID",
+        "info": "(Optional)"
+      },
+      "dateOfBirth": {
+        "label": "Date of Birth",
+        "placeholder": "Date of Birth"
+      },
+      "placeOfBirth": {
+        "label": "Place of Birth",
+        "countryPlaceholder": "Country of Birth",
+        "cityPlaceholder": "City of Birth"
+      },
+      "occupation": {
+        "label": "Occupation",
+        "placeholder": "Occupation",
+        "list": [
+          "Employee",
+          "Business Owner"
+        ]
+      },
+      "companyName": {
+        "label": "Company Name",
+        "placeholder": "Company Name"
+      },
+      "companyWebsite": {
+        "label": "Company Website",
+        "placeholder": "Company Website"
+      },
+      "officeNumber": {
+        "label": "Office Number",
+        "placeholder": "Office Number"
+      },
+      "businessNumber": {
+        "label": "Business Number",
+        "placeholder": "Business Number"
+      },
+      "businessSector": {
+        "label": "Business Sector",
+        "placeholder": "Business Sector",
+        "list": [
+          "Agriculture",
+          "Construction",
+          "Education",
+          "Finance",
+          "Healthcare",
+          "Hospitality",
+          "Information Technology",
+          "Manufacturing",
+          "Real Estate",
+          "Retail",
+          "Transportation"
+        ]
+      },
+      "lastDeparture": {
+        "label": "Last Departure Date from Oman",
+        "placeholder": "Last Departure Date from Oman (Optional)"
+      },
+      "citizenship": {
+        "label": "Citizenship/s",
+        "placeholder": "Citizenship/s",
+        "info": "(Select all that is applicable)"
+      },
+      "countryOfResidence": {
+        "label": "Country of Residence",
+        "placeholder": "Country of Residence"
+      },
+      "homeAddress": {
+        "label": "Home Address",
+        "placeholder": "Home Address",
+        "subText": "(Home Number, P.O. Box, PC, City, Country)"
+      },
+      "workAddress": {
+        "label": "Work Address",
+        "placeholder": "Work Address",
+        "subText": "(Company Main Branch, P.O. Box, PC)"
+      }
+    },
+    "dependent": {
+      "title": "Dependent Information",
+      "subtitle": "Please provide the details of your dependents.",
+      "addDependent": "Add Dependent",
+      "remove": "Remove",
+      "checkbox": "I confirm that I do not have any dependents",
+      "name": "Dependent",
+      "description": "As you are adding a dependent, please note that there will be an additional fees for each dependent.",
+      "dependentInformation": {
+        "relation": {
+          "label": "Relation",
+          "placeholder": "Relation",
+          "list": [
+            "Spouse",
+            "Children",
+            "Mother/Father",
+            "In-laws",
+            "Brother/Sister",
+            "Grandchildren"
+          ]
+        },
+        "fullName": {
+          "label": "Full Name",
+          "placeholder": "Full Name"
+        },
+        "email": {
+          "label": "Email",
+          "placeholder": "Email"
+        },
+        "contactNumber": {
+          "label": "Contact Number",
+          "placeholder": "Contact Number"
+        },
+        "dateOfBirth": {
+          "label": "Date of Birth",
+          "placeholder": "Date of Birth"
+        },
+        "placeOfBirth": {
+          "label": "Place of Birth",
+          "countryPlaceholder": "Country of Birth",
+          "cityPlaceholder": "City of Birth"
+        },
+        "citizenship": {
+          "label": "Citizenship/s",
+          "placeholder": "Citizenship/s",
+          "info": "(Select all that is applicable)"
+        },
+        "countryOfResidence": {
+          "label": "Country of Residence",
+          "placeholder": "Country of Residence"
+        },
+        "homeAddress": {
+          "label": "Home Address",
+          "placeholder": "Home Address",
+          "subText": "(Home Number, P.O. Box, PC, City, Country)"
+        },
+        "file": {
+          "label": "Children Custody Certificate",
+          "alt": "Optional",
+          "info": "2 MB max (PDF, JPG, PNG)"
+        }
+      }
+    },
+    "uploadDocuments": {
+      "title": "Upload Documents",
+      "description": "Please upload the required documents.",
+      "residenceOption": {
+        "label": "Residency Option",
+        "placeholder": "Residency Option"
+      }
+    },
+    "paymentDetails": {
+      "title": "Payment Details",
+      "description": "Please review the payment details below.",
+      "mainApplicant": "Main Applicant",
+      "total": "Total",
+      "overallTotal": "Overall Total",
+      "payNow": "Pay Now",
+      "OMR": "OMR",
+      "fees": {
+        "legal": "Legal fees (VAT included)",
+        "government": "Government fees"
+      },
+      "age": "Age"
+    },
+    "button": {
+      "back": "Back",
+      "next": "Next"
+    }
+  }
+}
