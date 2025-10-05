@@ -43,16 +43,22 @@ export default function PersonaVerification({ stageSet, formId }: any) {
       return;
     }
 
-    // Create redirect URL with return URL
-    const currentUrl = window.location.href;
-    const returnUrl = encodeURIComponent(currentUrl);
+    // Log the template ID for debugging
+    console.log("Using template ID:", templateId);
+    console.log("Environment:", environment);
+
+    setMessage("Preparing verification...");
     
-    // Use direct redirect to Persona - this bypasses all CORS/iframe restrictions
-    const personaUrl = `https://inquiry.withpersona.com/?inquiry-template-id=${templateId}&environment=${environment}&redirect-uri=${returnUrl}`;
+    // Try using the Persona hosted verification page
+    // This is a simpler approach that should work with your template
+    const personaUrl = `https://withpersona.com/verify/${templateId}?environment=${environment}`;
     
-    setMessage("Redirecting to verification service...");
+    console.log("Redirecting to:", personaUrl);
     
-    // Direct redirect - no popup, no iframe, no CORS issues
+    // Store current location to return to after verification
+    sessionStorage.setItem('verification_return_url', window.location.href);
+    
+    // Open in same window
     window.location.href = personaUrl;
   };
 
@@ -64,20 +70,19 @@ export default function PersonaVerification({ stageSet, formId }: any) {
           <p className="text-blue-800">{message}</p>
         </div>
         
-        {!message.includes("completed") && !message.includes("not configured") ? (
+        <div className="space-y-4">
           <button
             onClick={startVerification}
-            className="bg-blue-600 hover:bg-blue-700 text-white font-bold py-3 px-6 rounded-lg transition-colors duration-200"
+            className="bg-blue-600 hover:bg-blue-700 text-white font-bold py-3 px-6 rounded-lg transition-colors duration-200 w-full"
           >
             Start Identity Verification
           </button>
-        ) : message.includes("completed") ? (
-          <div className="mt-4 p-4 bg-green-50 border border-green-200 rounded-lg">
-            <p className="text-green-800 text-sm">
-              ✅ Identity verification completed successfully!
-            </p>
+          
+          <div className="text-sm text-gray-600 bg-gray-50 p-3 rounded">
+            <p><strong>Template ID:</strong> {process.env.NEXT_PUBLIC_PERSONA_TEMPLATE_ID || 'Not configured'}</p>
+            <p><strong>Environment:</strong> {process.env.NEXT_PUBLIC_PERSONA_ENVIRONMENT || 'sandbox'}</p>
           </div>
-        ) : null}
+        </div>
         
         {message.includes("not configured") || message.includes("error") || message.includes("Failed") ? (
           <div className="mt-4 p-4 bg-yellow-50 border border-yellow-200 rounded-lg">
