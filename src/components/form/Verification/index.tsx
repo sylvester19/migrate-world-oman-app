@@ -6,39 +6,36 @@ import { Client } from "persona";
 
 export default function PersonaVerification({ stageSet, formId }: any) {
   const [message, setMessage] = useState<string>(
-    "Your verification is loading..."
+    "Ready to start your identity verification."
   );
   const [client, setClient] = useState<Client | null>(null);
+  const [isReady, setIsReady] = useState<boolean>(false);
 
   useEffect(() => {
     // Check if Persona configuration is available
     const templateId = process.env.NEXT_PUBLIC_PERSONA_TEMPLATE_ID;
     const environment = process.env.NEXT_PUBLIC_PERSONA_ENVIRONMENT || "sandbox";
-    const apiKey = process.env.NEXT_PUBLIC_PERSONA_API_KEY;
 
     if (!templateId) {
       setMessage("Persona verification is not configured. Please contact support.");
       return;
     }
 
+    // Initialize client but don't auto-open
     try {
       const clientConfig: any = {
         templateId: templateId,
         environment: environment as "sandbox" | "production",
-        // Add referrer policy and iframe options for cross-origin support
-        referrerPolicy: "strict-origin-when-cross-origin",
-        // Use popup mode instead of iframe to avoid X-Frame-Options issues
+        // Don't set onReady to auto-open
         onReady: () => {
-          setMessage("Verification ready. Click to start...");
-          // Don't auto-open, let user click to start
+          setIsReady(true);
+          setMessage("Verification service is ready. Click the button below to start.");
         },
         onComplete: ({ inquiryId, status, fields }: any) => {
-          // Inquiry completed. Optionally tell your server about it.
           setMessage(`Verification completed with status: ${status}`);
           console.log(`Inquiry ID: ${inquiryId}`, fields);
         },
         onCancel: ({ inquiryId, sessionToken }: any) => {
-          // Inquiry cancelled. Optionally tell your server about it.
           setMessage(`Verification was cancelled. You can restart the process if needed.`);
         },
         onError: (error: any) => {
@@ -46,11 +43,6 @@ export default function PersonaVerification({ stageSet, formId }: any) {
           setMessage("Verification service encountered an error. Please try again or contact support.");
         },
       };
-
-      // Add API key if provided (for server-side operations)
-      if (apiKey) {
-        clientConfig.apiKey = apiKey;
-      }
 
       const newClient = new Client(clientConfig);
       setClient(newClient);
@@ -63,11 +55,27 @@ export default function PersonaVerification({ stageSet, formId }: any) {
   const startVerification = () => {
     if (client) {
       try {
-        setMessage("Opening verification...");
+        setMessage("Opening verification window...");
         client.open();
       } catch (error) {
         console.error("Error opening verification:", error);
-        setMessage("Failed to open verification. Please try again.");
+        setMessage("Failed to open verification. This may be due to browser restrictions.");
+        // Fallback: open Persona directly in new window
+        const templateId = process.env.NEXT_PUBLIC_PERSONA_TEMPLATE_ID;
+        if (templateId) {
+          const personaUrl = `https://inquiry.withpersona.com/?inquiry-template-id=${templateId}&environment=sandbox`;
+          window.open(personaUrl, '_blank', 'width=800,height=900');
+        }
+      }
+    } else {
+      // Fallback: open Persona directly
+      const templateId = process.env.NEXT_PUBLIC_PERSONA_TEMPLATE_ID;
+      if (templateId) {
+        setMessage("Opening verification in new window...");
+        const personaUrl = `https://inquiry.withpersona.com/?inquiry-template-id=${templateId}&environment=sandbox`;
+        window.open(personaUrl, '_blank', 'width=800,height=900');
+      } else {
+        setMessage("Verification service is not configured.");
       }
     }
   };
@@ -80,14 +88,12 @@ export default function PersonaVerification({ stageSet, formId }: any) {
           <p className="text-blue-800">{message}</p>
         </div>
         
-        {client && message.includes("ready") ? (
-          <button
-            onClick={startVerification}
-            className="bg-blue-600 hover:bg-blue-700 text-white font-bold py-3 px-6 rounded-lg transition-colors duration-200"
-          >
-            Start Identity Verification
-          </button>
-        ) : null}
+        <button
+          onClick={startVerification}
+          className="bg-blue-600 hover:bg-blue-700 text-white font-bold py-3 px-6 rounded-lg transition-colors duration-200"
+        >
+          Start Identity Verification
+        </button>
         
         {message.includes("not configured") || message.includes("error") || message.includes("Failed") ? (
           <div className="mt-4 p-4 bg-yellow-50 border border-yellow-200 rounded-lg">
