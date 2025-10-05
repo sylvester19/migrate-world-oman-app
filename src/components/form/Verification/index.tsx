@@ -1,65 +1,67 @@
 "use client";
 
 import React, { useEffect, useState } from "react";
+import { Client } from "persona";
 
 export default function PersonaVerification({ stageSet, formId }: any) {
   const [message, setMessage] = useState<string>(
     "Ready to start your identity verification."
   );
+  const [client, setClient] = useState<Client | null>(null);
 
   useEffect(() => {
-    // Check for return from Persona verification
-    const urlParams = new URLSearchParams(window.location.search);
-    const inquiryId = urlParams.get('inquiry-id');
-    const status = urlParams.get('status');
-    
-    if (inquiryId && status) {
-      // User returned from Persona verification
-      setMessage(`Verification completed with status: ${status}`);
-      console.log(`Inquiry ID: ${inquiryId}, Status: ${status}`);
-      
-      // Clean up URL parameters
-      const url = new URL(window.location.href);
-      url.searchParams.delete('inquiry-id');
-      url.searchParams.delete('status');
-      window.history.replaceState({}, document.title, url.pathname + url.search);
-    } else {
-      // Check if Persona is configured
-      const templateId = process.env.NEXT_PUBLIC_PERSONA_TEMPLATE_ID;
-      if (!templateId) {
-        setMessage("Persona verification is not configured. Please contact support.");
-      } else {
-        setMessage("Ready to start your identity verification.");
-      }
+    const templateId = process.env.NEXT_PUBLIC_PERSONA_TEMPLATE_ID;
+    const environment = process.env.NEXT_PUBLIC_PERSONA_ENVIRONMENT || "sandbox";
+
+    if (!templateId) {
+      setMessage("Persona verification is not configured. Please contact support.");
+      return;
+    }
+
+    console.log("Initializing Persona with:", { templateId, environment });
+
+    try {
+      const newClient = new Client({
+        templateId: templateId,
+        environment: environment as "sandbox" | "production",
+        onReady: () => {
+          setMessage("Verification service is ready. Click the button to start.");
+          console.log("Persona client ready");
+        },
+        onComplete: ({ inquiryId, status, fields }: any) => {
+          setMessage(`Verification completed with status: ${status}`);
+          console.log(`Inquiry completed: ${inquiryId}, Status: ${status}`, fields);
+        },
+        onCancel: ({ inquiryId, sessionToken }: any) => {
+          setMessage("Verification was cancelled. You can restart if needed.");
+          console.log(`Inquiry cancelled: ${inquiryId}`);
+        },
+        onError: (error: any) => {
+          console.error("Persona verification error:", error);
+          setMessage("Verification encountered an error. Please try again.");
+        },
+      });
+
+      setClient(newClient);
+    } catch (error) {
+      console.error("Failed to initialize Persona client:", error);
+      setMessage("Failed to initialize verification service.");
     }
   }, []);
 
   const startVerification = () => {
-    const templateId = process.env.NEXT_PUBLIC_PERSONA_TEMPLATE_ID;
-    const environment = process.env.NEXT_PUBLIC_PERSONA_ENVIRONMENT || "sandbox";
-    
-    if (!templateId) {
-      setMessage("Verification service is not configured.");
+    if (!client) {
+      setMessage("Verification service is not ready. Please wait a moment and try again.");
       return;
     }
 
-    // Log the template ID for debugging
-    console.log("Using template ID:", templateId);
-    console.log("Environment:", environment);
-
-    setMessage("Preparing verification...");
-    
-    // Try using the Persona hosted verification page
-    // This is a simpler approach that should work with your template
-    const personaUrl = `https://withpersona.com/verify/${templateId}?environment=${environment}`;
-    
-    console.log("Redirecting to:", personaUrl);
-    
-    // Store current location to return to after verification
-    sessionStorage.setItem('verification_return_url', window.location.href);
-    
-    // Open in same window
-    window.location.href = personaUrl;
+    try {
+      setMessage("Opening verification...");
+      client.open();
+    } catch (error) {
+      console.error("Error opening verification:", error);
+      setMessage("Failed to start verification. Please refresh the page and try again.");
+    }
   };
 
   return (
@@ -71,16 +73,36 @@ export default function PersonaVerification({ stageSet, formId }: any) {
         </div>
         
         <div className="space-y-4">
-          <button
-            onClick={startVerification}
-            className="bg-blue-600 hover:bg-blue-700 text-white font-bold py-3 px-6 rounded-lg transition-colors duration-200 w-full"
-          >
-            Start Identity Verification
-          </button>
+          {message.includes("completed") ? (
+            <div className="p-4 bg-green-50 border border-green-200 rounded-lg">
+              <p className="text-green-800 text-sm">
+                ✅ Identity verification completed successfully!
+              </p>
+            </div>
+          ) : message.includes("not configured") ? (
+            <div className="p-4 bg-red-50 border border-red-200 rounded-lg">
+              <p className="text-red-800 text-sm">
+                ⚠️ Verification service is not configured properly.
+              </p>
+            </div>
+          ) : (
+            <button
+              onClick={startVerification}
+              disabled={!client}
+              className={`w-full py-3 px-6 rounded-lg font-bold transition-colors duration-200 ${
+                client 
+                  ? 'bg-blue-600 hover:bg-blue-700 text-white' 
+                  : 'bg-gray-300 text-gray-500 cursor-not-allowed'
+              }`}
+            >
+              {client ? 'Start Identity Verification' : 'Initializing...'}
+            </button>
+          )}
           
           <div className="text-sm text-gray-600 bg-gray-50 p-3 rounded">
             <p><strong>Template ID:</strong> {process.env.NEXT_PUBLIC_PERSONA_TEMPLATE_ID || 'Not configured'}</p>
             <p><strong>Environment:</strong> {process.env.NEXT_PUBLIC_PERSONA_ENVIRONMENT || 'sandbox'}</p>
+            <p><strong>Client Status:</strong> {client ? 'Ready' : 'Initializing...'}</p>
           </div>
         </div>
         
