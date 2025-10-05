@@ -25,9 +25,12 @@ export default function PersonaVerification({ stageSet, formId }: any) {
       const clientConfig: any = {
         templateId: templateId,
         environment: environment as "sandbox" | "production",
+        // Add referrer policy and iframe options for cross-origin support
+        referrerPolicy: "strict-origin-when-cross-origin",
+        // Use popup mode instead of iframe to avoid X-Frame-Options issues
         onReady: () => {
-          setMessage("Verification ready. Opening...");
-          newClient.open();
+          setMessage("Verification ready. Click to start...");
+          // Don't auto-open, let user click to start
         },
         onComplete: ({ inquiryId, status, fields }: any) => {
           // Inquiry completed. Optionally tell your server about it.
@@ -57,6 +60,18 @@ export default function PersonaVerification({ stageSet, formId }: any) {
     }
   }, []);
 
+  const startVerification = () => {
+    if (client) {
+      try {
+        setMessage("Opening verification...");
+        client.open();
+      } catch (error) {
+        console.error("Error opening verification:", error);
+        setMessage("Failed to open verification. Please try again.");
+      }
+    }
+  };
+
   return (
     <div className="flex flex-col items-center justify-center p-8 min-h-[400px]">
       <div className="max-w-md text-center">
@@ -64,6 +79,16 @@ export default function PersonaVerification({ stageSet, formId }: any) {
         <div className="bg-blue-50 border border-blue-200 rounded-lg p-4 mb-4">
           <p className="text-blue-800">{message}</p>
         </div>
+        
+        {client && message.includes("ready") ? (
+          <button
+            onClick={startVerification}
+            className="bg-blue-600 hover:bg-blue-700 text-white font-bold py-3 px-6 rounded-lg transition-colors duration-200"
+          >
+            Start Identity Verification
+          </button>
+        ) : null}
+        
         {message.includes("not configured") || message.includes("error") || message.includes("Failed") ? (
           <div className="mt-4 p-4 bg-yellow-50 border border-yellow-200 rounded-lg">
             <p className="text-yellow-800 text-sm">
